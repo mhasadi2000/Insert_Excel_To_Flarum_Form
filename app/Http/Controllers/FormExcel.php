@@ -15,7 +15,7 @@ class FormExcel extends Controller
     {
 
         // $path = "/home/hossein/Desktop/flarumExcel/resources/neck_comment.csv";
-        $path = "/home/rahim/Insert_Excel_To_Flarum_Form/resources";
+        $path = "/home/rahim/Insert_Excel_To_Flarum_Form/resources/neck_comment.csv";
 
         $file = fopen($path, 'r');
 
@@ -75,7 +75,7 @@ class FormExcel extends Controller
     public function categoryMaker()
     {
             // $path = "/home/hossein/Desktop/flarumExcel/resources/neck_comment.csv";
-            $path = "/home/rahim/Insert_Excel_To_Flarum_Form/resources";
+            $path = "/home/rahim/Insert_Excel_To_Flarum_Form/resources/neck_comment.csv";
 
 
             $file = fopen($path, 'r');
