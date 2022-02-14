@@ -39,8 +39,22 @@ class FormExcel extends Controller
                 $i++;
             }
             fclose($file); //Close after reading
-            $j = 0;
             
+            foreach($importData_arr as $importData){
+                try{
+                    
+                    $category = $importData[8]; 
+                    if($category == ""){
+                        $category = "سایر";
+                    }
+                }catch(Exception $e){
+                    $category = "سایر";
+                }
+                $this->apiCategory($category);
+                
+            }
+            
+            $j = 0;
             foreach ($importData_arr as $importData) {
                 // dd($importData[5]);
                 $commentTemp = $importData[5]; //Get user names
