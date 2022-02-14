@@ -45,17 +45,12 @@ class FormExcel extends Controller
                 // dd($importData[5]);
                 $commentTemp = $importData[5]; //Get user names
                 $comment = $this->extractComment($commentTemp);
-                try{
-    
-                    $cat = $importData[8]; 
-                    if($cat == ""){
-                        $cat = "سایر";
-                        continue;
-                    }
-                }catch(Exception $e){
-                        $cat = "سایر";
-                        continue;
+                
+                $cat = $importData[8]; 
+                if($cat == "سایر"){
+                    continue;
                 }
+            
 
                 
                 $this->apiPosting($cat, $comment);
@@ -111,6 +106,7 @@ class FormExcel extends Controller
                             $category = "سایر";
                     }
                     $this->apiCategory($category);
+                    $j++;
                 }
                 return response()->json([
                     'message' => "$j records successfully uploaded"
