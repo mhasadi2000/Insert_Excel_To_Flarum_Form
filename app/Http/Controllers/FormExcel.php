@@ -40,28 +40,20 @@ class FormExcel extends Controller
             }
             fclose($file); //Close after reading
             
-            foreach($importData_arr as $importData){
-                try{
-                    
-                    $category = $importData[8]; 
-                    if($category == ""){
-                        $category = "سایر";
-                    }
-                }catch(Exception $e){
-                    $category = "سایر";
-                }
-                $this->apiCategory($category);
-                
-            }
-            
             $j = 0;
+            
             foreach ($importData_arr as $importData) {
                 // dd($importData[5]);
                 $commentTemp = $importData[5]; //Get user names
                 $comment = $this->extractComment($commentTemp);
                 
-                $cat = $importData[8]; 
-                if($cat == "سایر"){
+                try{
+                    
+                    $cat = $importData[8]; 
+                    if($cat == ""){
+                        continue;
+                    }
+                }catch(Exception $e){
                     continue;
                 }
             
@@ -108,17 +100,33 @@ class FormExcel extends Controller
                     $i++;
                 }
                 fclose($file); //Close after reading
+
+
+                $sqltitle="SELECT title
+                    FROM discussions";
+
+                $temp1 = DB::select($sqltitle,[1]);
+                
+                
                 $j = 0;
                 foreach($importData_arr as $importData){
                     try{
-    
+                        
                         $category = $importData[8]; 
                         if($category == ""){
-                            $category = "سایر";
+                            continue;
                         }
                     }catch(Exception $e){
-                            $category = "سایر";
+                        continue;
                     }
+
+
+                    foreach ($temp1 as $t){
+                        // dd($t->title);
+                        if($t->title == $category)
+                        continue;
+                    };
+
                     $this->apiCategory($category);
                     $j++;
                 }
@@ -295,17 +303,7 @@ class FormExcel extends Controller
     public function apiCategory($category)
     {
         $now=now();
-        $sql="SELECT title
-            FROM discussions";
-
-        $temp1 = DB::select($sql,[1]);
-        // dd($temp1->title);
-        foreach ($temp1 as $t){
-            // dd($t->title);
-            if($t->title == $category)
-            return;
-        };
-
+        
 
         $sql2 ="INSERT IGNORE INTO discussions (title ,created_at ,user_id)
                 VALUES ('$category', '$now' ,1)";
