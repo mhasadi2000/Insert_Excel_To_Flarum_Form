@@ -24,4 +24,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix('form')->group(function (){
     Route::post('', [FormExcel::class, 'index']);
     Route::post('userreg', [FormExcel::class, 'userreg']);
+    Route::get('catmake', [FormExcel::class, 'categoryMaker']);
 });
