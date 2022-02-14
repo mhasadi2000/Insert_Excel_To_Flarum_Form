@@ -14,28 +14,13 @@ class FormExcel extends Controller
     public function index()
     {
 
-        // dd($request->file);
-        //    $file = $request->file('');
-        // $file = $request->file('neck_comment.xlsx');$
-        $path = "/home/hossein/Desktop/flarumExcel/resources/neck_comment.csv";
-        // $file = realpath($path, "r");
+        // $path = "/home/hossein/Desktop/flarumExcel/resources/neck_comment.csv";
+        $path = "/home/rahim/Insert_Excel_To_Flarum_Form/resources";
+
         $file = fopen($path, 'r');
-        // dd($file);
+
         if ($file) {
-            //    $filename = $file->getClientOriginalName();
-            //    dd($filename);
-            //    $extension = $file->getClientOriginalExtension(); //Get extension of uploaded file
-            //    $tempPath = $file->getRealPath();
-            //    $fileSize = $file->getSize(); //Get size of uploaded file in bytes
-            //Check for file extension and size
-            //     $this->checkUploadedFileProperties($extension, $fileSize);
-            //Where uploaded file will be stored on the server 
-            //    $location = 'uploads'; //Created an "uploads" folder for that
-            // Upload file
-            //    $file->move($location, $filename);
-            // In case the uploaded file path is to be stored in the database 
-            //    $filepath = public_path($location . "/" . $filename);
-            // Reading file
+
 
             $importData_arr = array(); // Read through the file and store the contents as an array
             $i = 0;
@@ -73,19 +58,8 @@ class FormExcel extends Controller
                 }
 
                 
-                //generate name
-                // $name = $this->generateRandomName();
-                // dd($name);
-                // $this->apiRegistration();
                 $this->apiPosting($cat, $comment);
-                // $flag = true;
-                // while ($flag) {
-                //     try {
-                //         $flag = false;
-                //     }
-                //      catch (Exception $e) {
-                //     }
-                // }
+     
 
                 $j++;
             }
@@ -100,7 +74,9 @@ class FormExcel extends Controller
 
     public function categoryMaker()
     {
-            $path = "/home/hossein/Desktop/flarumExcel/resources/neck_comment.csv";
+            // $path = "/home/hossein/Desktop/flarumExcel/resources/neck_comment.csv";
+            $path = "/home/rahim/Insert_Excel_To_Flarum_Form/resources";
+
 
             $file = fopen($path, 'r');
 
