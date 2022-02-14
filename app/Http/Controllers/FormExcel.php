@@ -102,10 +102,6 @@ class FormExcel extends Controller
                 fclose($file); //Close after reading
 
 
-                $sqltitle="SELECT title
-                    FROM discussions";
-
-                $temp1 = DB::select($sqltitle,[1]);
                 
                 
                 $j = 0;
@@ -121,14 +117,11 @@ class FormExcel extends Controller
                     }
 
 
-                    foreach ($temp1 as $t){
-                        // dd($t->title);
-                        if($t->title == $category)
-                        continue;
-                    };
+                    $result = $this->apiCategory($category);
+                    if($result){
 
-                    $this->apiCategory($category);
-                    $j++;
+                        $j++;
+                    }
                 }
                 return response()->json([
                     'message' => "$j records successfully uploaded"
@@ -303,7 +296,17 @@ class FormExcel extends Controller
     public function apiCategory($category)
     {
         $now=now();
-        
+        $sql="SELECT title
+            FROM discussions";
+
+        $temp1 = DB::select($sql,[1]);
+        // dd($temp1->title);
+        foreach ($temp1 as $t){
+            // dd($t->title);
+            if($t->title == $category)
+            return false;
+        };
+
 
         $sql2 ="INSERT IGNORE INTO discussions (title ,created_at ,user_id)
                 VALUES ('$category', '$now' ,1)";
@@ -313,7 +316,7 @@ class FormExcel extends Controller
 
 
         $temp = DB::insert($sql2,[1]);
-     
+        return $temp;
     }
 
     function generateRandomPassword()
