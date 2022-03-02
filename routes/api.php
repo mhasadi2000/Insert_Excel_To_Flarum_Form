@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AddDiseasSymp;
 use App\Http\Controllers\FormExcel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -25,4 +26,8 @@ Route::prefix('form')->group(function (){
     Route::post('', [FormExcel::class, 'index']);
     Route::post('userreg', [FormExcel::class, 'userreg']);
     Route::get('catmake', [FormExcel::class, 'categoryMaker']);
+});
+
+Route::prefix('add')->group(function (){
+    Route::post('', [AddDiseasSymp::class, 'index']);
 });

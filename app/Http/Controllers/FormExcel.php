@@ -122,7 +122,10 @@ class FormExcel extends Controller
 
                         $j++;
                     }
+            
                 }
+
+
                 return response()->json([
                     'message' => "$j records successfully uploaded"
                 ]);
