@@ -80,7 +80,8 @@ class AddDiseasSymp extends Controller
 
     public function symptomMaker($symp)
     {
-        $sql = "INSERT INTO treatment_x (title, mode) VALUES ('$symp',2)";
+        $now = now();
+        $sql = "INSERT INTO treatment_x (title, mode, created_at) VALUES ('$symp',2,'$now')";
         $result = DB::insert($sql,[1]);
         $sql2 = "SELECT id FROM treatment_x WHERE (title = '$symp' and mode = 2)";
         $result2 = DB::select($sql2,[1])[0];
@@ -98,9 +99,9 @@ class AddDiseasSymp extends Controller
         
         $sqlsearch = "SELECT id FROM treatment_x WHERE (title = '$disease' and mode = 1)";
         $resultsearch = DB::select($sqlsearch,[1]);
-
+        $now = now();
         if(!$resultsearch){
-            $sql = "INSERT INTO treatment_x (title,description, mode) VALUES ('$disease','$description',1)";
+            $sql = "INSERT INTO treatment_x (title,description, mode,created_at) VALUES ('$disease','$description',1,'$now')";
             $result = DB::insert($sql,[1]);
         }
         
