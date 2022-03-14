@@ -226,7 +226,7 @@ class FormExcel extends Controller
     public function userreg()
     {
         $count =0;
-        $total =200;
+        $total =50;
 
         for($count;$count<$total;$count++){
             $randd=rand(0,1700);

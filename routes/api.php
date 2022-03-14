@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AddCondition;
 use App\Http\Controllers\AddDiseasSymp;
 use App\Http\Controllers\FormExcel;
 use Illuminate\Http\Request;
@@ -30,4 +31,5 @@ Route::prefix('form')->group(function (){
 
 Route::prefix('add')->group(function (){
     Route::post('', [AddDiseasSymp::class, 'index']);
+    Route::post('condition', [AddCondition::class, 'index']);
 });
