@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Morilog\Jalali\Jalalian;
 
 class AddCondition extends Controller
@@ -84,8 +85,9 @@ class AddCondition extends Controller
     { 
         
         $sqlsearch = "SELECT id FROM treatment_x WHERE (title = '$condition' and mode = 2)";
-        dd($sqlsearch);
-        $resultsearch = DB::select($sqlsearch,[1]);
+        // var_log($sqlsearch);
+        Log::debug($sqlsearch);
+        $resultsearch = DB::select($sqlsearch,[1])[0];
 
         // dd($resultsearch);
 
