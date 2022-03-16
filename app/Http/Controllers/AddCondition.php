@@ -100,7 +100,7 @@ class AddCondition extends Controller
 
             //same disease id for all 
             $disease_id =22;
-            $randd=rand(0,20);
+            $randd=rand(80,140);
             $sqlinsert1 = "INSERT INTO submit_diseases (disease_id,user_id) VALUES ($disease_id,'$randd')";
             $resultinsert1 = DB::insert($sqlinsert1,[1]);
 
