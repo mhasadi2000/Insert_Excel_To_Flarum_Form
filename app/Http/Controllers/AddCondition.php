@@ -18,8 +18,8 @@ class AddCondition extends Controller
     public function index()//Request $request)
     {
         // $path = $request->address;
-        $path = "/home/hossein/Desktop/flarumExcel/resources/binicon.csv";
-        // $path = "/home/rahim/Insert_Excel_To_Flarum_Form/resources/fatigue.csv";
+        // $path = "/home/hossein/Desktop/flarumExcel/resources/binicon.csv";
+        $path = "/home/rahim/Insert_Excel_To_Flarum_Form/resources/binicon.csv";
 
         $file = fopen($path, 'r');
 
@@ -98,7 +98,8 @@ class AddCondition extends Controller
         // $result2 = DB::select($sql2,[1])[0];
         for ($x=0;$x<$number;$x++){
 
-            $disease_id =147;
+            //same disease id for all 
+            $disease_id =22;
             $randd=rand(0,20);
             $sqlinsert1 = "INSERT INTO submit_diseases (disease_id,user_id) VALUES ($disease_id,'$randd')";
             $resultinsert1 = DB::insert($sqlinsert1,[1]);
