@@ -86,7 +86,7 @@ class AddCondition extends Controller
         
         $sqlsearch = "SELECT id FROM treatment_x WHERE (title = '$condition' and mode = 2)";
         // var_log($sqlsearch);
-        Log::debug($sqlsearch);
+        error_log($sqlsearch);
         $resultsearch = DB::select($sqlsearch,[1])[0];
 
         // dd($resultsearch);
